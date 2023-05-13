@@ -4,7 +4,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 import { ExpenseType, ExpensesType } from "./model/expeses";
 
-const App = () => {
+function App() {
   const expenses: ExpensesType = [
     {
       id: "e1",

@@ -9,7 +9,7 @@ interface OwnProps {
   items: ExpensesType;
 }
 
-const Expenses = ({ items }: OwnProps) => {
+function Expenses({ items }: OwnProps) {
   return (
     <Card className="expenses">
       {items.map((item) => (
@@ -22,6 +22,6 @@ const Expenses = ({ items }: OwnProps) => {
       ))}
     </Card>
   );
-};
+}
 
 export default Expenses;

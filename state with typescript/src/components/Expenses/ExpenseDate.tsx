@@ -6,7 +6,7 @@ interface OwnProps {
   date: Date;
 }
 
-const ExpenseDate = (props: OwnProps) => {
+function ExpenseDate(props: OwnProps) {
   const month = props.date.toLocaleString("en-US", { month: "long" });
   const day = props.date.toLocaleString("en-US", { day: "2-digit" });
   const year = props.date.getFullYear();
@@ -18,6 +18,6 @@ const ExpenseDate = (props: OwnProps) => {
       <div className="expense-date__day">{day}</div>
     </div>
   );
-};
+}
 
 export default ExpenseDate;
