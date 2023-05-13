@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
@@ -11,12 +11,16 @@ interface OwnProps {
 }
 
 function Expenses({ items }: OwnProps) {
+  const [filteredYear, setFilteredYear] = useState("2020");
   function selectYearHandler(selectedYear: string) {
-    console.log(selectedYear);
+    setFilteredYear(selectedYear);
   }
   return (
     <Card className="expenses">
-      <ExpensesFilter onSelectYear={selectYearHandler} />
+      <ExpensesFilter
+        selectedYear={filteredYear}
+        onSelectYear={selectYearHandler}
+      />
       {items.map((item) => (
         <ExpenseItem
           key={item.id}
