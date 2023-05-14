@@ -5,6 +5,7 @@ import { ExpensesType } from "../../model/expeses";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import "./Expenses.css";
+import ExpensesChart from "./ExpensesChart";
 
 interface OwnProps {
   items: ExpensesType;
@@ -25,6 +26,7 @@ function Expenses({ items }: OwnProps) {
         selectedYear={filteredYear}
         onSelectYear={selectYearHandler}
       />
+      <ExpensesChart expenses={filteredItems} />
       <ExpensesList items={filteredItems} />
     </Card>
   );
