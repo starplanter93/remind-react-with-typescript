@@ -18,20 +18,24 @@ function Expenses({ items }: OwnProps) {
   const filteredItems = items.filter(
     (item) => item.date.getFullYear().toString() === filteredYear
   );
+  let expensesContent: JSX.Element | JSX.Element[] = <p>비용 없음</p>;
+  if (filteredItems.length > 0) {
+    expensesContent = filteredItems.map((item) => (
+      <ExpenseItem
+        key={item.id}
+        title={item.title}
+        amount={item.amount}
+        date={item.date}
+      />
+    ));
+  }
   return (
     <Card className="expenses">
       <ExpensesFilter
         selectedYear={filteredYear}
         onSelectYear={selectYearHandler}
       />
-      {filteredItems.map((item) => (
-        <ExpenseItem
-          key={item.id}
-          title={item.title}
-          amount={item.amount}
-          date={item.date}
-        />
-      ))}
+      {expensesContent}
     </Card>
   );
 }

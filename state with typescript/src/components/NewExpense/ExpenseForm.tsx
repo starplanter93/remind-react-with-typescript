@@ -5,9 +5,10 @@ import { ExpenseTypeWithoutId } from "../../model/expeses";
 
 interface OwnProps {
   onSaveExpenseData(enteredExpenseData: ExpenseTypeWithoutId): void;
+  onCancel(): void;
 }
 
-function ExpenseForm({ onSaveExpenseData }: OwnProps) {
+function ExpenseForm({ onSaveExpenseData, onCancel }: OwnProps) {
   const [expenseForm, setExpenseForm] = useState({
     enteredTitle: "",
     enteredAmount: "",
@@ -35,6 +36,7 @@ function ExpenseForm({ onSaveExpenseData }: OwnProps) {
       enteredAmount: "",
       enteredDate: "",
     });
+    onCancel();
   }
 
   return (
@@ -76,6 +78,9 @@ function ExpenseForm({ onSaveExpenseData }: OwnProps) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
