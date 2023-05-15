@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
-
-interface OwnProps {
-  onLogin(email: string, password: string): void;
-}
+import AuthContext from "../../store/auth-context";
 
 interface emailStateType {
   value: string;
@@ -55,7 +52,7 @@ const passwordReducer = (
   return passwordInitialState;
 };
 
-function Login({ onLogin }: OwnProps) {
+function Login() {
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, dispatchEmail] = useReducer(
     emailReducer,
@@ -65,6 +62,7 @@ function Login({ onLogin }: OwnProps) {
     passwordReducer,
     passwordInitialState
   );
+  const authCtx = useContext(AuthContext);
 
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatchEmail({ type: "USER_INPUT", payload: event.target.value });
@@ -86,7 +84,7 @@ function Login({ onLogin }: OwnProps) {
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onLogin(emailState.value, passwordState.value);
+    authCtx.onLogin(emailState.value, passwordState.value);
   };
 
   const { isValid: emailIsValid } = emailState;
