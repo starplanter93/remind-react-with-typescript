@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 
-import fetchMoviesHandler from "./api/fetchMoviesHandler";
+import fetchMoviesAPI from "./api/fetchMoviesAPI";
 import MoviesList from "./components/MoviesList";
 import { transformedMovieType } from "./model/movieType";
 import "./App.css";
 
 function App() {
   const [movies, setMovies] = useState<transformedMovieType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<unknown>(null);
 
-  function fetchingMoviesHandler() {
-    fetchMoviesHandler().then((transformedMovies) => {
+  async function fetchingMoviesHandler() {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const transformedMovies = await fetchMoviesAPI();
       setMovies(transformedMovies);
-    });
+    } catch (err) {
+      setError(err);
+    }
+
+    setIsLoading(false);
   }
 
   return (
@@ -20,7 +29,9 @@ function App() {
         <button onClick={fetchingMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && !error && <p>영화없음</p>}
+        {isLoading && <p>로딩중...</p>}
       </section>
     </>
   );
