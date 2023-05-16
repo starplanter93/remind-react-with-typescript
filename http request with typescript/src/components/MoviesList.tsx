@@ -2,13 +2,13 @@ import React from "react";
 
 import Movie from "./Movie";
 import classes from "./MoviesList.module.css";
-import { dummyMoviesType } from "../model/movieType";
+import { transformedMovieType } from "../model/movieType";
 
 interface OwnProps {
-  movies: dummyMoviesType;
+  movies: transformedMovieType[];
 }
 
-const MovieList = ({ movies }: OwnProps) => {
+function MovieList({ movies }: OwnProps) {
   return (
     <ul className={classes["movies-list"]}>
       {movies.map((movie) => (
@@ -21,6 +21,6 @@ const MovieList = ({ movies }: OwnProps) => {
       ))}
     </ul>
   );
-};
+}
 
 export default MovieList;

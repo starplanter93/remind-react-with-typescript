@@ -5,7 +5,7 @@ import { dummyMovieWithoutIdType } from "../model/movieType";
 
 interface OwnProps extends dummyMovieWithoutIdType {}
 
-const Movie = ({ title, releaseDate, openingText }: OwnProps) => {
+function Movie({ title, releaseDate, openingText }: OwnProps) {
   return (
     <li className={classes.movie}>
       <h2>{title}</h2>
@@ -13,6 +13,6 @@ const Movie = ({ title, releaseDate, openingText }: OwnProps) => {
       <p>{openingText}</p>
     </li>
   );
-};
+}
 
 export default Movie;
