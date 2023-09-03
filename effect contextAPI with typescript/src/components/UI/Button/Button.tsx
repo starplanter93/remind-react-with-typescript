@@ -4,7 +4,7 @@ import classes from "./Button.module.css";
 
 interface OwnProps {
   type: "button" | "submit" | "reset" | undefined;
-  className: string;
+  className?: string;
   disabled?: boolean;
   children: React.ReactNode;
   onClick?(): void;
