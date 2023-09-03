@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 
-import fetchMoviesAPI from "./api/fetchMoviesAPI";
-import MoviesList from "./components/MoviesList";
-import { transformedMovieType } from "./model/movieType";
-import "./App.css";
+import fetchMoviesAPI from './api/fetchMoviesAPI';
+import MoviesList from './components/MoviesList';
+import { transformedMovieType } from './model/movieType';
+import './App.css';
 
 function App() {
   const [movies, setMovies] = useState<transformedMovieType[]>([]);
